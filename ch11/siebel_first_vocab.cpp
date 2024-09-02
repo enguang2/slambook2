@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <iomanip> // For std::setw and std::setfill
 
 using namespace cv;
 using namespace std;
@@ -17,15 +18,21 @@ int main( int argc, char** argv ) {
     // read the image 
     cout<<"reading images... "<<endl;
     vector<Mat> images; 
-    for ( int i=0; i<8; i++ )
-    {
-        string path = "./data/siebel_checkboard/"+to_string(i)+".jpg";
-        images.push_back( imread(path) );
+
+    for (int i = 1; i <= 138; i++) {
+        // Generate the file name with leading zeros (e.g., siebel_0001.png)
+        stringstream ss;
+        ss << "./data/sisbel_first_floor_loop_closure_2fps/siebel_" << setw(4) << setfill('0') << i << ".png";
+        string path = ss.str();
+
+        // Load the image and store it
+        images.push_back(imread(path));
     }
     // detect ORB features
     cout<<"detecting ORB features ... "<<endl;
     Ptr< Feature2D > detector = ORB::create();
     vector<Mat> descriptors;
+
     for ( Mat& image:images )
     {
         vector<KeyPoint> keypoints; 
@@ -39,7 +46,7 @@ int main( int argc, char** argv ) {
     DBoW3::Vocabulary vocab;
     vocab.create( descriptors );
     cout<<"vocabulary info: "<<vocab<<endl;
-    vocab.save( "siebel_checkboard.yml.gz" );
+    vocab.save( "siebel_first.yml.gz" );
     cout<<"done"<<endl;
     
     return 0;

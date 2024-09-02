@@ -26,3 +26,12 @@ target_link_libraries( gen_vocab ${OpenCV_LIBS} ${DBoW3_LIBS} )
 #I add this 
 add_executable( large_loop_closure large_loop_closure.cpp )
 target_link_libraries( large_loop_closure ${OpenCV_LIBS} ${DBoW3_LIBS} )
+
+add_executable( siebel_first_vocab siebel_first_vocab.cpp )
+target_link_libraries( siebel_first_vocab ${OpenCV_LIBS} ${DBoW3_LIBS} )
+
+add_executable( siebel_first_loop_closure siebel_first_loop_closure.cpp )
+target_link_libraries( siebel_first_loop_closure ${OpenCV_LIBS} ${DBoW3_LIBS} )
+
+add_executable( siebel_checkboard siebel_checkboard.cpp )
+target_link_libraries( siebel_checkboard ${OpenCV_LIBS} ${DBoW3_LIBS} )
