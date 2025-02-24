@@ -17,6 +17,9 @@ set( DBoW3_LIBS "/usr/local/lib/libDBoW3.so" )
 add_executable( feature_training feature_training.cpp )
 target_link_libraries( feature_training ${OpenCV_LIBS} ${DBoW3_LIBS} )
 
+add_executable( kitti_feature_training kitti_feature_training.cpp )
+target_link_libraries( kitti_feature_training ${OpenCV_LIBS} ${DBoW3_LIBS} )
+
 add_executable( loop_closure loop_closure.cpp )
 target_link_libraries( loop_closure ${OpenCV_LIBS} ${DBoW3_LIBS} )
 
@@ -35,3 +38,6 @@ target_link_libraries( siebel_first_loop_closure ${OpenCV_LIBS} ${DBoW3_LIBS} )
 
 add_executable( siebel_checkboard siebel_checkboard.cpp )
 target_link_libraries( siebel_checkboard ${OpenCV_LIBS} ${DBoW3_LIBS} )
+
+add_executable( kitti_lcd_00 kitti_lcd_00.cpp )
+target_link_libraries( kitti_lcd_00 ${OpenCV_LIBS} ${DBoW3_LIBS} )

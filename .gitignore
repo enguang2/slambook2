@@ -1,3 +1,5 @@
+*.pdf
+*.gz
 # Prerequisites
 *.d
 
