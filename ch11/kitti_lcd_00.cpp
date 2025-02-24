@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     cout << "reading images... " << endl;
     vector<Mat> images;
 
-    for (int i = 0; i <= 4540; i++) // Looping up to 4540
+    for (int i = 0; i <= 45; i++) // Looping up to 4540
     {
         stringstream pathStream;
         pathStream << "./dataset/KITTI/data_odometry_gray/dataset/sequences/00/image_0/" 
@@ -77,10 +77,24 @@ int main(int argc, char **argv) {
     for (int i = 0; i < descriptors.size(); i++)
         db.add(descriptors[i]);
     cout << "database info: " << db << endl;
+
+    std::ofstream fout("dbow_result.txt");  // Open output file
+
+    if (!fout) {
+        std::cerr << "Error: Unable to open file for writing.\n";
+        return 0;
+    }
+
+
     for (int i = 0; i < descriptors.size(); i++) {
         DBoW3::QueryResults ret;
         db.query(descriptors[i], ret, 20);      // max result=4
-        cout << "searching for image " << i << " returns " << ret << endl << endl;
+        // cout << "Top 20 most similar images to " << i << " returns " << ret << endl << endl;
+        // print(f"\nTop 20 most similar images to {os.path.basename(image_path)}:", file = f)
+        std::ostringstream oss;
+        oss << "\nTop 20 most similar images to " << setw(6) << setfill('0') << i << ".png" << ": " << ret << "\n";
+        // oss<<ret<< "\n";
+        fout << oss.str();
     }
-    cout << "done." << endl;
+    fout.close();
 }
