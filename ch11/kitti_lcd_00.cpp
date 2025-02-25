@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     cout << "reading images... " << endl;
     vector<Mat> images;
 
-    for (int i = 0; i <= 45; i++) // Looping up to 4540
+    for (int i = 0; i <= 4540; i++) // Looping up to 4540
     {
         stringstream pathStream;
         pathStream << "./dataset/KITTI/data_odometry_gray/dataset/sequences/00/image_0/" 
